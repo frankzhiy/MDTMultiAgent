@@ -1,7 +1,5 @@
 ﻿# 间质性肺病(ILD) 专门化多智能体 MDT 系统
 
-> 文档已精简整合：原 PROJECT_SUMMARY.md / USAGE_GUIDE.md / MULTI_ROUND_UPGRADE.md / ILD_MDT_CONVERSION_SUMMARY.md 全部内容合并于此 README。
-
 ## 目录
 - [简介](#简介)
 - [核心特性](#核心特性)

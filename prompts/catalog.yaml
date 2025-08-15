@@ -1,0 +1,259 @@
+# Prompt 元数据目录 (供医生/非工程人员查看)
+# 可添加/修改，但请不要改 id 字段（与 registry.py 中键一致）
+# 字段说明:
+#   label: 前端显示名称（简洁）
+#   category: 分类 (系统提示/主分析/协调流程/病理子任务/风湿子任务/数据子任务/通用任务/清单)
+#   role: 相关科室或用途
+#   description: 简短说明
+#   file: 物理文件(自动生成可忽略，可选)
+# 若新增 id 未在此出现，前端会降级显示原始 id
+
+prompts:
+  SYSTEM_BASE_PROMPT:
+    label: 通用系统基础
+    category: 系统提示
+    role: 全局
+    group: 基础
+    description: 全局基础指令（定义所有智能体共享的总体行为边界、输出规范与安全要求）
+  COORDINATOR_SYSTEM_PROMPT:
+    label: 协调员系统
+    category: 系统提示
+    role: 协调员
+    group: 协调员
+    description: MDT 协调系统设定（负责整体流程、阶段控制、结果整合）
+  PULMONARY_SYSTEM_PROMPT:
+    label: 呼吸科系统
+    category: 系统提示
+    role: 呼吸科
+    group: 呼吸科
+    description: 呼吸科系统设定（聚焦临床症状+功能+进展评估）
+  IMAGING_SYSTEM_PROMPT:
+    label: 影像科系统
+    category: 系统提示
+    role: 影像科
+    group: 影像科
+    description: 影像科系统设定（HRCT 模式判读与影像要素抽取）
+  PATHOLOGY_SYSTEM_PROMPT:
+    label: 病理科系统
+    category: 系统提示
+    role: 病理科
+    group: 病理科
+    description: 病理科系统设定（组织学模式与细胞学要点）
+  RHEUMATOLOGY_SYSTEM_PROMPT:
+    label: 风湿免疫系统
+    category: 系统提示
+    role: 风湿免疫
+    group: 风湿免疫
+    description: 风湿免疫系统设定（结缔组织病关联与免疫分层）
+  DATA_ANALYSIS_SYSTEM_PROMPT:
+    label: 数据分析系统
+    category: 系统提示
+    role: 数据分析
+    group: 数据分析
+    description: 数据分析系统设定（结构化量化指标解析与趋势建模）
+
+  # 主分析
+  PULMONARY_ANALYSIS_PROMPT:
+    label: 呼吸科主分析
+    category: 主分析
+    role: 呼吸科
+    group: 呼吸科
+    description: 呼吸科对 ILD 病例综合评估（症状→分类→严重度→治疗→随访）
+  IMAGING_ANALYSIS_PROMPT:
+    label: 影像学主分析
+    category: 主分析
+    role: 影像科
+    group: 影像科
+    description: HRCT/影像模式识别与评估（模式+分布+结构+进展）
+  PATHOLOGY_ANALYSIS_PROMPT:
+    label: 病理主分析
+    category: 主分析
+    role: 病理科
+    group: 病理科
+    description: 肺活检 + BAL 综合病理分析（模式+纤维化+炎细胞+特殊征象）
+  RHEUMATOLOGY_CTD_ILD_PROMPT:
+    label: CTD-ILD 主分析
+    category: 主分析
+    role: 风湿免疫
+    group: 风湿免疫
+    description: 结缔组织病相关 ILD 综合分析（抗体→多系统→风险→治疗策略）
+  DATA_ANALYSIS_MAIN_PROMPT:
+    label: 数据主分析
+    category: 主分析
+    role: 数据分析
+    group: 数据分析
+    description: 肺功能/生物标志物/随访趋势综合（时间序列与进展速率）
+
+  # 协调流程
+  COORDINATION_ANALYSIS_PROMPT:
+    label: "协调阶段: 初步汇总"
+    category: 协调流程
+    role: 协调员
+    group: 协调员
+    description: 汇总各专科初始观点（提取核心要点与差异）
+  CONFLICT_DETECTION_PROMPT:
+    label: "协调阶段: 冲突识别"
+    category: 协调流程
+    role: 协调员
+    group: 协调员
+    description: 发现诊断/治疗冲突点（标注证据不足或分歧来源）
+  CONSENSUS_EVALUATION_PROMPT:
+    label: "协调阶段: 共识评估"
+    category: 协调流程
+    role: 协调员
+    group: 协调员
+    description: 汇合多方意见形成候选共识（加权证据 → 共识等级）
+  FINAL_COORDINATION_PROMPT:
+    label: "协调阶段: 最终整合"
+    category: 协调流程
+    role: 协调员
+    group: 协调员
+    description: 输出最终 MDT 结论（统一诊断+治疗+随访）
+  COORDINATOR_PROMPT:
+    label: 协调任务 (旧)
+    category: 协调流程
+    role: 协调员
+    group: 协调员
+    description: 早期协调任务模板（已保留向后兼容）
+
+  # 病理子任务
+  BAL_CYTOLOGY_PROMPT:
+    label: BAL 细胞学
+    category: 病理子任务
+    role: 病理科
+    group: 病理科
+    description: 支气管肺泡灌洗液细胞学分析（分类比例+异常细胞+诊断支持度）
+  FIBROSIS_PATTERN_PROMPT:
+    label: 纤维化模式评估
+    category: 病理子任务
+    role: 病理科
+    group: 病理科
+    description: 纤维化分布与模式判断（阶段性+异质性+与影像对应）
+  PATHOLOGY_SPECIAL_FEATURES_PROMPT:
+    label: 病理特殊征象
+    category: 病理子任务
+    role: 病理科
+    group: 病理科
+    description: 肉芽肿/异物/血管等特殊表现（指向特异病因或CTD特征）
+  PATHOLOGY_DIFFERENTIAL_PROMPT:
+    label: 病理鉴别诊断
+    category: 病理子任务
+    role: 病理科
+    group: 病理科
+    description: 列出主要/需排除诊断（支持/反对要点+补充取材建议）
+
+  # 风湿子任务
+  RHEUMATOLOGY_AUTOANTIBODIES_PROMPT:
+    label: 自身抗体分析
+    category: 风湿子任务
+    role: 风湿免疫
+    group: 风湿免疫
+    description: 自身抗体谱解读（特异性+滴度意义+组合模式）
+  RHEUMATOLOGY_CTD_CLASSIFICATION_PROMPT:
+    label: CTD 分类评估
+    category: 风湿子任务
+    role: 风湿免疫
+    group: 风湿免疫
+    description: 结缔组织病分类判定（分类标准条目与不确定性）
+  RHEUMATOLOGY_MULTISYSTEM_PROMPT:
+    label: 多系统受累
+    category: 风湿子任务
+    role: 风湿免疫
+    group: 风湿免疫
+    description: 多系统受累与活动度（系统清单+活动性 vs 慢性损伤）
+  RHEUMATOLOGY_IMMUNOTHERAPY_PROMPT:
+    label: 免疫治疗建议
+    category: 风湿子任务
+    role: 风湿免疫
+    group: 风湿免疫
+    description: 药物/生物制剂策略（起始/递减/升级与监测）
+  RHEUMATOLOGY_PROGNOSIS_PROMPT:
+    label: 预后因素评估
+    category: 风湿子任务
+    role: 风湿免疫
+    group: 风湿免疫
+    description: 进展与风险分层（风险因子+动态指标+再评估阈值）
+
+  # 数据子任务
+  DATA_PFT_ANALYSIS_PROMPT:
+    label: 肺功能分析
+    category: 数据子任务
+    role: 数据分析
+    group: 数据分析
+    description: 肺功能参数与趋势（FVC/DLCO 纵向变化与严重度）
+  DATA_BIOMARKER_ANALYSIS_PROMPT:
+    label: 生物标志物分析
+    category: 数据子任务
+    role: 数据分析
+    group: 数据分析
+    description: KL-6/SP-D 等指标解读（异常阈值与趋势方向）
+  DATA_PROGRESSION_ANALYSIS_PROMPT:
+    label: 进展速度评估
+    category: 数据子任务
+    role: 数据分析
+    group: 数据分析
+    description: FVC/DLCO 年下降率等（进展性纤维化判据支持度）
+  DATA_PROGNOSTIC_MODEL_PROMPT:
+    label: 预后模型构建
+    category: 数据子任务
+    role: 数据分析
+    group: 数据分析
+    description: 风险因子与模型性能（变量筛选+性能指标+解释度）
+  DATA_TREATMENT_RESPONSE_PROMPT:
+    label: 治疗反应评估
+    category: 数据子任务
+    role: 数据分析
+    group: 数据分析
+    description: 治疗前后指标变化（基线 vs 随访 Δ 与显著性）
+  DATA_MONITORING_PLAN_PROMPT:
+    label: 监测计划制定
+    category: 数据子任务
+    role: 数据分析
+    group: 数据分析
+    description: 随访频率与指标（分层随访周期与动态触发条件）
+
+  # 通用任务
+  CASE_SUMMARY_PROMPT:
+    label: 病例要点总结
+    category: 通用任务
+    role: 通用
+    group: 基础
+    description: 将原始病例整理为结构化摘要（输入清洗与标准字段抽取）
+  RAG_QUERY_PROMPT:
+    label: 检索增强查询
+    category: 通用任务
+    role: 通用
+    group: 基础
+    description: RAG 检索问题模板（结构化问题构造，提升召回相关性）
+
+  # 清单
+  PULMONARY_ANALYSIS_CHECKLIST:
+    label: 呼吸科核对清单
+    category: 清单
+    role: 呼吸科
+    group: 呼吸科
+    description: 呼吸科分析要点检查（防遗漏：症状/分类/严重度/随访）
+  IMAGING_ANALYSIS_CHECKLIST:
+    label: 影像学核对清单
+    category: 清单
+    role: 影像科
+    group: 影像科
+    description: 影像分析要点检查（模式/分布/结构/进展）
+  PATHOLOGY_ANALYSIS_CHECKLIST:
+    label: 病理核对清单
+    category: 清单
+    role: 病理科
+    group: 病理科
+    description: 病理分析要点检查（模式+纤维化+细胞+特殊病变）
+  CTD_ILD_ANALYSIS_CHECKLIST:
+    label: CTD-ILD 核对清单
+    category: 清单
+    role: 风湿免疫
+    group: 风湿免疫
+    description: CTD-ILD 分析要点检查（分类/抗体/受累/风险/治疗）
+  DATA_ANALYSIS_CHECKLIST:
+    label: 数据分析核对清单
+    category: 清单
+    role: 数据分析
+    group: 数据分析
+    description: 数据分析要点检查（指标完整性 + Δ 变化）
